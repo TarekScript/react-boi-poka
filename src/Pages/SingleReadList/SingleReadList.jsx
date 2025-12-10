@@ -17,7 +17,7 @@ const SingleReadList = ({ book }) => {
                 <div className='flex items-center gap-6'>
                     <h3>Tags</h3>
                     {
-                        tags.map(tag => <button className='btn'>{tag}</button>)
+                        tags.map(tag => <button className='btn text-[#23BE0AFF]'>#{tag}</button>)
                     }
                     <h3 className='flex items-center gap-2'><CiLocationOn /> Year Of Publishing: {yearOfPublishing}</h3>
                 </div>
