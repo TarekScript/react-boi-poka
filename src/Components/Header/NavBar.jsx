@@ -5,9 +5,10 @@ const NavBar = () => {
     const links = <>
         <Link to='/'><li className='m-2'>Home</li></Link>
         <Link to='/readlist'> <li className='m-2'>Read List </li></Link>
+        <Link to='/pagesToRead'> <li className='m-2'>Pages to Read </li></Link>
     </>
     return (
-        <div className="navbar bg-base-100 shadow-sm">
+        <div className="navbar bg-base-100 shadow-sm max-w-7xl mx-auto mb-6">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -19,7 +20,7 @@ const NavBar = () => {
                         {links}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                <a className="btn btn-ghost text-xl">Book Vibe</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -27,7 +28,8 @@ const NavBar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                <a className="btn m-2 bg-[#23BE0A] text-white">Sign Up</a>
+                <a className="btn bg-[#59C6D2] text-white">Sign In</a>
             </div>
         </div>
     );

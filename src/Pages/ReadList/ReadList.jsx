@@ -4,6 +4,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { getStoredBook } from '../../Utility/addToDb';
 import Book from '../Book/Book';
+import SingleReadList from '../SingleReadList/SingleReadList';
 
 const ReadList = () => {
     const [myReadList, setMyReadList] = useState([]);
@@ -28,7 +29,7 @@ const ReadList = () => {
     }
 
     return (
-        <div>
+        <div className='max-w-7xl mx-auto'>
             <div className="dropdown dropdown-start">
                 <div tabIndex={0} role="button" className="btn m-1">Sort By : {sort ? sort : ''}</div>
                 <ul tabIndex="-1" className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
@@ -43,7 +44,7 @@ const ReadList = () => {
                 </TabList>
 
                 <TabPanel>
-                    {myReadList.map(book => <Book book={book}></Book>)}
+                    {myReadList.map(book => <SingleReadList book={book}></SingleReadList>)}
                 </TabPanel>
                 <TabPanel>
                     <h2>Any content 2</h2>

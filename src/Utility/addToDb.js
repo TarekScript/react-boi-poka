@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 const getStoredBook = () => {
     const storedBookStr = localStorage.getItem('bookList');
     if (storedBookStr) {
@@ -13,7 +14,10 @@ const addToStoredDb = (id) => {
     const storedBookData = getStoredBook();
 
     if (storedBookData.includes(id)) {
-        alert('Book Already Added');
+        Swal.fire({
+            icon: "error",
+            title: "Book Already Added!",
+        });
     }
     else {
         storedBookData.push(id);
