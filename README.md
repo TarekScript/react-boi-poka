@@ -2,7 +2,7 @@
 
 A modern book-tracking web application built with React, React Router, Tailwind CSS, DaisyUI, and SweetAlert.
 
-🌐 Live Website: https://boi-poka-react.netlify.app/readlist
+🌐 Live Website: https://boi-poka-react.netlify.app
 
 🚀 Features
 ✅ Book Listing
