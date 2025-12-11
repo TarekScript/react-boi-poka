@@ -2,29 +2,38 @@ import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import { getStoredBook } from '../../Utility/addToDb';
-import Book from '../Book/Book';
+import { getStoredBook, getWishListedBook } from '../../Utility/addToDb';
 import SingleReadList from '../SingleReadList/SingleReadList';
 
 const ReadList = () => {
     const [myReadList, setMyReadList] = useState([]);
+    const [myWishList, setMyWishList] = useState([]);
     const [sort, setSort] = useState('');
     const booksData = useLoaderData();
     useEffect(() => {
         const storedData = getStoredBook();
         const storedDataInt = storedData.map(data => parseInt(data));
         const myNewReadList = booksData.filter(book => storedDataInt.includes(book.bookId));
-        setMyReadList(myNewReadList)
+        setMyReadList(myNewReadList);
+
+        // get wishlised books 
+        const wishListedBooksId = getWishListedBook();
+        const wishListedBooksIdInt = wishListedBooksId.map(book => parseInt(book));
+        const wishListedBooks = booksData.filter(book => wishListedBooksIdInt.includes(book.bookId));
+        setMyWishList(wishListedBooks);
+
     }, [])
     const handleSort = (type) => {
         setSort(type);
         if (type == "Pages") {
             const sortByPages = [...booksData].sort((a, b) => a.totalPages - b.totalPages);
-            setMyReadList(sortByPages)
+            setMyReadList(sortByPages);
+            setMyWishList(sortByPages)
         }
         else if (type == "Ratings") {
             const sortByRatings = [...booksData].sort((a, b) => b.rating - a.rating);
-            setMyReadList(sortByRatings)
+            setMyReadList(sortByRatings);
+            setMyWishList(sortByRatings)
         }
     }
 
@@ -47,7 +56,9 @@ const ReadList = () => {
                     {myReadList.map(book => <SingleReadList book={book}></SingleReadList>)}
                 </TabPanel>
                 <TabPanel>
-                    <h2>Any content 2</h2>
+                    {
+                        myWishList.map(book => <SingleReadList book={book}></SingleReadList>)
+                    }
 
                 </TabPanel>
             </Tabs>

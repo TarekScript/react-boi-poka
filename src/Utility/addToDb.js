@@ -25,4 +25,31 @@ const addToStoredDb = (id) => {
         localStorage.setItem('bookList', newStoredBookData)
     }
 }
-export { addToStoredDb, getStoredBook };
+
+const getWishListedBook = () => {
+    const wishListedBookStr = localStorage.getItem('wishList');
+    if (wishListedBookStr) {
+        const wishListedBook = JSON.parse(wishListedBookStr);
+        return wishListedBook;
+    }
+    else {
+        return [];
+    }
+}
+
+const addToWishList = (id) => {
+    const wishListedData = getWishListedBook();
+    if (wishListedData.includes(id)) {
+        Swal.fire({
+            icon: "error",
+            title: "Book Already Added!",
+        });
+    }
+    else {
+        wishListedData.push(id);
+        const wishListedDataStri = JSON.stringify(wishListedData);
+        localStorage.setItem('wishList', wishListedDataStri)
+    }
+}
+
+export { addToStoredDb, getStoredBook, addToWishList, getWishListedBook };

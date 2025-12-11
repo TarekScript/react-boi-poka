@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLoaderData, useParams } from 'react-router';
-import { addToStoredDb } from '../../Utility/addToDb';
+import { addToStoredDb, addToWishList } from '../../Utility/addToDb';
 import { CiLocationOn } from "react-icons/ci";
 import { MdOutlinePeople } from "react-icons/md";
 import { MdMenuBook } from "react-icons/md";
@@ -13,6 +13,9 @@ const BookDetails = () => {
     const { image, bookName, author, rating, category, tags, yearOfPublishing, publisher, totalPages, review } = singleBook;
     const handleAddToRead = () => {
         addToStoredDb(id)
+    }
+    const handleWishList = () => {
+        addToWishList(id);
     }
 
     return (
@@ -42,16 +45,11 @@ const BookDetails = () => {
                 <hr className='border-t mb-6 border-dashed border-[1px] border-[#13131326] my-2' />
                 <div className='space-x-4'>
                     <button onClick={handleAddToRead} className="btn  btn-outline">Mark As Read</button>
-                    <button className="btn bg-[#50B1C9] font-bold text-white">Add To WishList</button>
+                    <button onClick={handleWishList} className="btn bg-[#50B1C9] font-bold text-white">Add To WishList</button>
                 </div>
             </div>
         </div>
-        // <div>
-        //     <img className='h-48' src={image} alt="" />
-        //     <h1>{bookName}</h1>
-        //     <button onClick={handleAddToRead} className="btn">Mark As Read</button>
-        //     <button className="btn">Add To WishList</button>
-        // </div>
+
     );
 };
 
